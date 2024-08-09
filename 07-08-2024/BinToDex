@@ -1,0 +1,35 @@
+// Atividade 1 07/08/2024
+// Arthur 5°, Pedro 4° e Thiago 5°
+// Link Replit: https://replit.com/@ThiagoPinheiro8/BinToDex#main.cs
+
+using System;
+using System.Collections.Generic;
+
+class Program 
+{
+  public static void Main (string[] args) 
+  {
+    //entrada do número binário
+    Console.WriteLine ("Enter a bin number:");
+    string bin = Console.ReadLine();
+
+    //separação do número binário
+    List<int> Lbin = new List<int>();
+    for (int i = 0; i < bin.Length; i++)
+    {
+      Lbin.Add(int.Parse(bin[i].ToString()));
+    }
+    Lbin.Reverse();
+
+    //converção binário-decimal
+    int dec = 0;
+    for (int i = 0; i < Lbin.Count; i++)
+    {
+      
+      dec += (int)Math.Pow(2, i) * Lbin[i];
+    }
+
+    //saída do número decimal
+    Console.WriteLine(dec);
+  }
+}
