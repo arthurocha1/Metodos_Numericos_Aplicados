@@ -1,0 +1,56 @@
+//Atividade 2
+// Equação de propagação do erro
+
+using System;
+
+class Program
+{
+    // Função que calcula o valor de z
+    static double Funcao(double x, double y)
+    {
+        // Exemplo de função: z = x^2 + y^2
+        return x * x + y * y;
+    }
+
+    // Funções que calculam as derivadas parciais de z com respeito a x e y
+    static double DerivadaParcialX(double x, double y)
+    {
+        // Derivada parcial de z = x^2 + y^2 com respeito a x é 2*x
+        return 2 * x;
+    }
+
+    static double DerivadaParcialY(double x, double y)
+    {
+        // Derivada parcial de z = x^2 + y^2 com respeito a y é 2*y
+        return 2 * y;
+    }
+
+    static void Main()
+    {
+        // Leitura dos valores das variáveis
+        Console.Write("Digite o valor de x: ");
+        double x = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Digite o valor de y: ");
+        double y = Convert.ToDouble(Console.ReadLine());
+
+        // Leitura dos erros associados
+        Console.Write("Digite o erro associado a x (Delta x): ");
+        double deltaX = Convert.ToDouble(Console.ReadLine());
+
+        Console.Write("Digite o erro associado a y (Delta y): ");
+        double deltaY = Convert.ToDouble(Console.ReadLine());
+
+        // Cálculo da função e das derivadas
+        double z = Funcao(x, y);
+        double dZDx = DerivadaParcialX(x, y);
+        double dZDy = DerivadaParcialY(x, y);
+
+        // Cálculo do erro propagado
+        double deltaZ = Math.Sqrt(Math.Pow(dZDx * deltaX, 2) + Math.Pow(dZDy * deltaY, 2));
+
+        // Exibição dos resultados
+        Console.WriteLine($"Valor de z: {z}");
+        Console.WriteLine($"Erro propagado: {deltaZ}");
+    }
+}
