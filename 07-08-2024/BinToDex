@@ -1,7 +1,6 @@
-// Atividade 1 07/08/2024
-// Arthur 5°, Pedro 4° e Thiago 5°
-// Link Replit: https://replit.com/@ThiagoPinheiro8/BinToDex#main.cs
-
+//Atividade 1 07/08/2024
+//Arthur 5°, Pedro 4° e Thiago 5°
+//Link Replit: https://replit.com/@ThiagoPinheiro8/BinToDex#main.cs
 using System;
 using System.Collections.Generic;
 
@@ -9,27 +8,59 @@ class Program
 {
   public static void Main (string[] args) 
   {
-    //entrada do número binário
-    Console.WriteLine ("Enter a bin number:");
-    string bin = Console.ReadLine();
-
-    //separação do número binário
-    List<int> Lbin = new List<int>();
-    for (int i = 0; i < bin.Length; i++)
+    //seleção do tipo de conversão
+    Console.WriteLine("Selecione:\n1 - Bix>Dex\n2 - Dex>Bin:");
+    int selec = int.Parse(Console.ReadLine());
+    switch (selec)
     {
-      Lbin.Add(int.Parse(bin[i].ToString()));
-    }
-    Lbin.Reverse();
+      //binário para decimal
+      case 1:
+        {
+          //entrada do número binário
+          Console.Clear();
+          Console.WriteLine ("Insira um número binário:");
+          string bin = Console.ReadLine();
 
-    //converção binário-decimal
-    int dec = 0;
-    for (int i = 0; i < Lbin.Count; i++)
-    {
-      
-      dec += (int)Math.Pow(2, i) * Lbin[i];
-    }
+          //separação do número binário
+          List<int> Lbin = new List<int>();
+          for (int i = 0; i < bin.Length; i++)
+          {
+            Lbin.Add(int.Parse(bin[i].ToString()));
+          }
+          Lbin.Reverse();
 
-    //saída do número decimal
-    Console.WriteLine(dec);
-  }
+          //converção binário-decimal
+          int dec = 0;
+          for (int i = 0; i < Lbin.Count; i++)
+          {
+            dec += (int)Math.Pow(2, i) * Lbin[i];
+          }
+
+          //saída do número decimal
+          Console.WriteLine(dec);
+        }
+        break;
+
+      //decimal para binário
+      case 2:
+        {
+          //entrada do número decimal
+          Console.Clear();
+          Console.WriteLine ("Insira um número decimal:");
+          int dec = int.Parse(Console.ReadLine());
+
+          //converção decimal-binário
+          string bin = "";
+          while (dec > 0) 
+          {
+            bin = (dec % 2) + bin;
+            dec /= 2;
+          }
+          
+          //saída do número binário
+          Console.WriteLine(bin);
+        }
+        break;
+      }
+    }
 }
